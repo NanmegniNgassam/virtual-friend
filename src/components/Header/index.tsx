@@ -12,7 +12,7 @@ const Header = () => {
         <HeaderContainer>
             <BrandContainer>
                 <img src={logo} alt="Branding image refering to the app provider" />
-                <p className="app-name"><p>Virtual</p> <p>Friend</p>.</p>
+                <div className="app-name"><p>Virtual</p> <p>Friend.</p></div>
             </BrandContainer>
             <TimeContainer>
                 <p className="day-time">

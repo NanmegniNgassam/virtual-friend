@@ -41,16 +41,16 @@ const theme: Theme = createTheme({
       white: '#ffffff',
     },
     primary: {
-      main: '#1088E5',
-      light: '#2893e6',
-      dark: '#0e62d6',
+      main: '#749C3C',
+      light: '#96B16A',
+      dark: '#78883C',
       contrastText: '#f2f2f2'
     },
     secondary: {
-      main: '#d1d1d1',
-      light: '#f2f2f2',
-      dark: '#a2a2a2',
-      contrastText: '#232326'
+      main: '#2977BD',
+      light: '#78A8D4',
+      dark: '#014e92',
+      contrastText: '#f2f2f2'
     }
   }
 });
