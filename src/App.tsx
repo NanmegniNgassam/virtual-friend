@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider, useLocation } from 'react-router-dom';
 import Home from './pages/home';
 import Settings from './pages/settings';
+import Header from './components/Header';
 
 
 declare module '@mui/material/styles' {
@@ -65,6 +66,7 @@ const AppLayout = () => {
 
   return (
     <div>
+      <Header />
       <Outlet />
     </div>
   )
