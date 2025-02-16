@@ -4,6 +4,7 @@ import { createBrowserRouter, Outlet, RouterProvider, useLocation } from 'react-
 import Home from './pages/home';
 import Settings from './pages/settings';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 declare module '@mui/material/styles' {
@@ -68,6 +69,7 @@ const AppLayout = () => {
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   )
 }
