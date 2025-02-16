@@ -1,12 +1,11 @@
+import MobileHeader from "../../components/MobileHeader";
 import { MainContainer, UsePolicyText } from "./Home.styles";
 
 const Home = () => {
     return (
         <div>
             <MainContainer>
-                <div>
-                    <p>Welcome on the home page.</p>
-                </div>
+                <MobileHeader />
             </MainContainer>
             <UsePolicyText>
                 Please consider the 

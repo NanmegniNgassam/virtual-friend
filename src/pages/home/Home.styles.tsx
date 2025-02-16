@@ -8,6 +8,8 @@ export const MainContainer = styled.div`
     height: 70vh;
     aspect-ratio: 2/3;
     margin: 30px auto;
+    overflow: hidden;
+    background-color: whitesmoke;
     @media screen and (max-width: 600px) {
         gap: 5px;
     }
