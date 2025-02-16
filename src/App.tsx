@@ -66,7 +66,7 @@ const AppLayout = () => {
   }, [pathname]);
 
   return (
-    <div>
+    <div className='app-layout'>
       <Header />
       <Outlet />
       <Footer />
