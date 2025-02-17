@@ -1,4 +1,5 @@
 import MobileHeader from "../../components/MobileHeader";
+import TextZone from "../../components/TextZone";
 import { MainContainer, UsePolicyText } from "./Home.styles";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <MainContainer>
                 <MobileHeader />
+                <TextZone />
             </MainContainer>
             <UsePolicyText>
                 Please consider the 

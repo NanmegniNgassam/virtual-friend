@@ -10,6 +10,9 @@ export const MainContainer = styled.div`
     margin: 30px auto;
     overflow: hidden;
     background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     @media screen and (max-width: 600px) {
         gap: 5px;
         max-width: 92%;
