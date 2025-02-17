@@ -20,10 +20,10 @@ export const BrandContainer = styled.div`
     .app-name {
         font-size: 2.5rem;
         display: flex;
-        color: ${Colors.primary};
+        color: ${Colors.primary.main};
         letter-spacing: 0.15rem;
         p::first-letter {
-            color: ${Colors.secondary}
+            color: ${Colors.secondary.main}
         }
     }
     @media screen and (max-width: 600px) {

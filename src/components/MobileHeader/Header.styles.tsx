@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Colors } from "../../utils/colors";
 
 export const MobileHeaderContainer = styled.div`
     display: flex;
@@ -18,9 +19,13 @@ export const TextContainer = styled.div`
 `
 
 export const UserNameLayout = styled.p`
-
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1.2rem;
 `
 
 export const OnlineStatus = styled.p`
-
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    color: ${Colors.primary.dark};
 `

@@ -13,8 +13,8 @@ const MobileHeader = () => {
                 sx={{ width: 50, height: 50, boxShadow: 3}}
             />
             <TextContainer>
-                <UserNameLayout>FRIEND_NAME</UserNameLayout>
-                <OnlineStatus>STATUS</OnlineStatus>
+                <UserNameLayout>virtual friend</UserNameLayout>
+                <OnlineStatus>status</OnlineStatus>
             </TextContainer>
             <Link to="/settings">
                 <Settings sx={{ width: 30, height: 30, cursor: 'pointer'}} color="secondary"  />
