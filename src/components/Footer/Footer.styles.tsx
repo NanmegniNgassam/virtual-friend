@@ -19,3 +19,6 @@ export const FooterContainer = styled.div`
 export const CatchWordTypographer = styled.p`
     font-size: 1.2rem;
 `
+export const UsePolicyText = styled.p`
+    text-align: center;
+`

@@ -18,7 +18,3 @@ export const MainContainer = styled.div`
         max-width: 92%;
     }
 `
-
-export const UsePolicyText = styled.p`
-    text-align: center;
-`
