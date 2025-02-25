@@ -20,9 +20,12 @@ const TextZone = () => {
                     className='typing-area'
                     value={text}
                     onChange={(event) => setText(event.target.value)}
-                    aria-label='The text message you want to send' 
+                    aria-label='Type the text you want to send as message' 
                 />
-                <CameraAltIcon sx={{ cursor: 'pointer', '&:hover': { color: 'primary.dark' } }} color='primary' />
+                {
+                    (!text || text.length === 0) 
+                    && <CameraAltIcon sx={{ cursor: 'pointer', '&:hover': { color: 'primary.dark' } }} color='primary' aria-label='selecting the image to send as message' />
+                }
             </InputZone>
             <Avatar 
                 sx={{
@@ -37,7 +40,6 @@ const TextZone = () => {
                         return;
                     
                     sendMessage(text);
-
                     // Empty all the assets once sent
                     setText('');
                     setImage('');
