@@ -18,3 +18,8 @@ export const MainContainer = styled.div`
         max-width: 92%;
     }
 `
+
+export const DiscussionContainer = styled.div`
+    flex: 1;
+    padding: 0 10px;
+`;

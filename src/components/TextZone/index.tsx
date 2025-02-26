@@ -1,15 +1,15 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
 import { InputZone, TextZoneContainer } from './TextZone.styles';
+import { Discussion, Message, MessageType } from '../../models/Message';
 
-const TextZone = () => {
+interface TextZoneProps {
+    setMessages: Dispatch<React.SetStateAction<Discussion>>;
+}
+
+const TextZone = ({ setMessages }: TextZoneProps) => {
     const [text, setText] = useState<string>('')
-
-    const sendMessage = (message: string): void => {
-        // Implement the sending process
-        console.log(message)
-    }
 
     return (
         <TextZoneContainer>
@@ -32,8 +32,16 @@ const TextZone = () => {
                 onClick={() => {
                     if(!text)
                         return;
+
+                    const message:Message = {
+                        repliedId: null,
+                        id: 1,
+                        content: text,
+                        sendingDate: new Date(),
+                        type: MessageType.SENT
+                    }
                     
-                    sendMessage(text);
+                    setMessages((prevMessages) => [...prevMessages, message])
                     // Remove the sent message from the text zone
                     setText('');
                 }}

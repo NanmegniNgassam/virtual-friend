@@ -1,13 +1,12 @@
 export interface Message {
     id: number;
     repliedId: number | null;
-    isText: boolean;
-    content: string | Blob;
+    content: string;
     type: MessageType;
     sendingDate: Date
 }
 
-enum MessageType {
+export enum MessageType {
     SENT, RECEIVED
 }
 
