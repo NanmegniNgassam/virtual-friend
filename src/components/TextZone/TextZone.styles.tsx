@@ -9,9 +9,6 @@ export const TextZoneContainer = styled.div`
 
 export const InputZone = styled.div`
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     border: 1px solid grey;
     background-color: white;
     border-radius: 3px;

@@ -7,47 +7,17 @@ const LOCAL_STORAGE_KEY = "vf-local-discussion"
  * 
  * @returns Discussion: An array of exchanged messages
  */
-export const getAllDiscussionMessages = (): Discussion => {
-    const storedData = getStoredData();
-
-    return storedData.discussion;
-}
-
-/**
- * Fetch the app settings
- * 
- * @returns settings: An config object for the global app
- */
-export const getSettings = (): VFSettings => {
-    const storedData = getStoredData();
-
-    return storedData.settings;
-}
-
-/**
- * Fetch all app used data
- * 
- * @returns VFStorage: Object gathering the discussion and the settings
- */
-export const getStoredData = ():VFStorage => {
+export const getDiscussionMessages = (): Discussion => {
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY)
     
     if(storedData) {
-        const data: VFStorage = JSON.parse(storedData);
+        const data: Discussion = JSON.parse(storedData);
 
         return data;
     } else {
-        const data: VFStorage = {
-            discussion: [],
-            settings: {
-                contact: {
-                    avatar: new Blob(),
-                    name: 'Virtual Friend'
-                },
-                userName: ''
-            }
-        };
-        storeData(data);
+        // Initialize an empty discussion and save it
+        const data: Discussion = [];
+        storeDiscussion(data);
 
         return data;
     }
@@ -56,19 +26,6 @@ export const getStoredData = ():VFStorage => {
 /**
  * Save data in the storage system
  */
-export const storeData = (data: VFStorage):void => {
+export const storeDiscussion = (data: Discussion):void => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-}
-
-interface VFStorage {
-    discussion: Discussion;
-    settings: VFSettings;
-}
-
-interface VFSettings {
-    contact: {
-        name: string;
-        avatar: Blob;
-    },
-    userName: string;
 }

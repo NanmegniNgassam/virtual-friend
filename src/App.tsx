@@ -1,10 +1,9 @@
 import { createTheme, Theme, ThemeProvider } from '@mui/material';
 import { useEffect } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider, useLocation } from 'react-router-dom';
-import Home from './pages/home';
-import Settings from './pages/settings';
-import Header from './components/Header';
 import Footer from './components/Footer';
+import Header from './components/Header';
+import Home from './pages/home';
 
 
 declare module '@mui/material/styles' {
@@ -81,10 +80,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-      },
-      {
-        path: '/settings',
-        element: <Settings />,
       },
       {
         path: '*',
