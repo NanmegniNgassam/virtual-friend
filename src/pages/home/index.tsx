@@ -4,6 +4,8 @@ import TextZone from "../../components/TextZone";
 import { Discussion, Message } from "../../models/Message";
 import { getDiscussionMessages } from "../../services/discussion";
 import { DiscussionContainer, MainContainer } from "./Home.styles";
+import MessageContainer from "../../components/Message";
+
 
 const Home = () => {
     const [discussion, setDiscussion] = useState<Discussion>(getDiscussionMessages());
@@ -22,9 +24,10 @@ const Home = () => {
             <MainContainer>
                 <MobileHeader />
                 <DiscussionContainer>
+                    
                     {
                         discussion.map((message, index) => (
-                            <p key={index}>{message.content}</p>
+                            <MessageContainer message={message} key={index} />
                         ))
                     }
                 </DiscussionContainer>
