@@ -1,15 +1,36 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from '@mui/material';
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
+import { Message, MessageType } from '../../models/Message';
 import { InputZone, TextZoneContainer } from './TextZone.styles';
-import { Discussion, Message, MessageType } from '../../models/Message';
 
 interface TextZoneProps {
-    setMessages: Dispatch<React.SetStateAction<Discussion>>;
+    addMessageToThread: (message: Message) => void;
 }
 
-const TextZone = ({ setMessages }: TextZoneProps) => {
-    const [text, setText] = useState<string>('')
+const TextZone = ({ addMessageToThread }: TextZoneProps) => {
+    const [text, setText] = useState<string>('');
+
+    /**
+     * Send the message entered to the thread
+     */
+    const sendMessage = ():void => {
+        if(!text)
+            return;
+
+        // Make an object of actual type Message and send it
+        const message:Message = {
+            repliedId: null,
+            id: 0,
+            content: text,
+            sentAt: new Date(),
+            type: MessageType.SENT
+        }
+        addMessageToThread(message)
+        
+        // Remove the sent message from the text zone
+        setText('');
+    } 
 
     return (
         <TextZoneContainer>
@@ -29,22 +50,7 @@ const TextZone = ({ setMessages }: TextZoneProps) => {
                         bgcolor: text ? 'primary.dark' : 'primary.light' 
                     }    
                 }}
-                onClick={() => {
-                    if(!text)
-                        return;
-
-                    const message:Message = {
-                        repliedId: null,
-                        id: 1,
-                        content: text,
-                        sendingDate: new Date(),
-                        type: MessageType.SENT
-                    }
-                    
-                    setMessages((prevMessages) => [...prevMessages, message])
-                    // Remove the sent message from the text zone
-                    setText('');
-                }}
+                onClick={sendMessage}
             >
                 <SendIcon sx={{ color: 'white' }} aria-label='sending the current message'/>
             </Avatar>

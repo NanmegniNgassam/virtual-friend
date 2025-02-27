@@ -3,7 +3,7 @@ export interface Message {
     repliedId: number | null;
     content: string;
     type: MessageType;
-    sendingDate: Date
+    sentAt: Date
 }
 
 export enum MessageType {

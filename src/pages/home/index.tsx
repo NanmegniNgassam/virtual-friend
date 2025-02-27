@@ -1,26 +1,34 @@
 import { useState } from "react";
 import MobileHeader from "../../components/MobileHeader";
 import TextZone from "../../components/TextZone";
-import { Discussion } from "../../models/Message";
+import { Discussion, Message } from "../../models/Message";
 import { getDiscussionMessages } from "../../services/discussion";
 import { DiscussionContainer, MainContainer } from "./Home.styles";
 
 const Home = () => {
-    const [messages, setMessages] = useState<Discussion>(getDiscussionMessages());
+    const [discussion, setDiscussion] = useState<Discussion>(getDiscussionMessages());
 
-    // TODO: Change setMessages by sendMessages
+    /**
+     * Send a message into the discussion thread
+     * 
+     * @param message the actual message to add in the thread
+     */
+    const sendMessage = (message: Message): void => {
+        setDiscussion((prevMessages) => [...prevMessages, message])
+    }
+
     return (
         <div>
             <MainContainer>
                 <MobileHeader />
                 <DiscussionContainer>
                     {
-                        messages.map((message, index) => (
+                        discussion.map((message, index) => (
                             <p key={index}>{message.content}</p>
                         ))
                     }
                 </DiscussionContainer>
-                <TextZone setMessages={setMessages} />
+                <TextZone addMessageToThread={sendMessage} />
             </MainContainer>
         </div>
     );
