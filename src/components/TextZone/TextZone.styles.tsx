@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TextZoneContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     gap: 5px;
 `
 

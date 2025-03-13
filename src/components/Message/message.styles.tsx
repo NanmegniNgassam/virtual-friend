@@ -6,8 +6,11 @@ export const MessageWrapper = styled.p`
     border-radius: 5px;
     color: white;
     padding: 5px;
-    margin: 5px 0;
+    margin: 5px;
     max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     width: fit-content;
     font-size: 0.9rem;
+    align-self: flex-end;
 `;

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import MessagesList from "../../components/MessagesList";
 import MobileHeader from "../../components/MobileHeader";
 import TextZone from "../../components/TextZone";
 import { Discussion, Message } from "../../models/Message";
 import { getDiscussionMessages } from "../../services/discussion";
-import { DiscussionContainer, MainContainer } from "./Home.styles";
-import MessageContainer from "../../components/Message";
+import { MainContainer } from "./Home.styles";
 
 
 const Home = () => {
@@ -23,14 +23,8 @@ const Home = () => {
         <div>
             <MainContainer>
                 <MobileHeader />
-                <DiscussionContainer>
-                    
-                    {
-                        discussion.map((message, index) => (
-                            <MessageContainer message={message} key={index} />
-                        ))
-                    }
-                </DiscussionContainer>
+                    <MessagesList messages={discussion} />
+
                 <TextZone addMessageToThread={sendMessage} />
             </MainContainer>
         </div>
