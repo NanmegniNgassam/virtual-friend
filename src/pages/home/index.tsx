@@ -3,7 +3,7 @@ import MessagesList from "../../components/MessagesList";
 import MobileHeader from "../../components/MobileHeader";
 import TextZone from "../../components/TextZone";
 import { Discussion, Message } from "../../models/Message";
-import { getDiscussionMessages } from "../../services/discussion";
+import { getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
 import { MainContainer } from "./Home.styles";
 
 
@@ -16,15 +16,18 @@ const Home = () => {
      * @param message the actual message to add in the thread
      */
     const sendMessage = (message: Message): void => {
-        setDiscussion((prevMessages) => [...prevMessages, message])
+        // Update the current UI with the newly sent message
+        setDiscussion((prevMessages) => [...prevMessages, message]);
+
+        // Add the newly sent message into the stored discussion
+        saveMessageInDiscussion(message);
     }
 
     return (
         <div>
             <MainContainer>
                 <MobileHeader />
-                    <MessagesList messages={discussion} />
-
+                <MessagesList messages={discussion} />
                 <TextZone addMessageToThread={sendMessage} />
             </MainContainer>
         </div>

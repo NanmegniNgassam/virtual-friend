@@ -1,4 +1,4 @@
-import { Discussion } from "../models/Message"
+import { Discussion, Message } from "../models/Message"
 
 const LOCAL_STORAGE_KEY = "vf-local-discussion"
 
@@ -25,7 +25,24 @@ export const getDiscussionMessages = (): Discussion => {
 
 /**
  * Save data in the storage system
+ * 
+ * @params data: the array of messages we'd like to save
  */
 export const storeDiscussion = (data: Discussion):void => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }
+
+/**
+ * Add the newly sent message into the storage system
+ * 
+ * @params message: the newly sent message
+ */
+export const saveMessageInDiscussion = (message: Message):void => {
+    const currentDiscussion = getDiscussionMessages();
+    const discussion = [...currentDiscussion, message];
+
+    storeDiscussion(discussion);
+}
+
+
+// Think about an evolve where we can send temporary messages (on a specified time window)
