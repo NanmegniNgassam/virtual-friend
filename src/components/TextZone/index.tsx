@@ -30,7 +30,17 @@ const TextZone = ({ addMessageToThread }: TextZoneProps) => {
         
         // Remove the sent message from the text zone
         setText('');
-    } 
+    }
+
+    /**
+     * Add interactivity to message typing (sending on 'Enter' press)
+     * 
+     * @params currentEntry: the current key pressed
+     */
+    const updateMessageEntry = (currentEntry: string): void => {
+        if (currentEntry === 'Enter') 
+            sendMessage()
+    }
 
     return (
         <TextZoneContainer>
@@ -38,7 +48,8 @@ const TextZone = ({ addMessageToThread }: TextZoneProps) => {
                 <input 
                     className='typing-area'
                     value={text}
-                    onChange={(event) => setText(event.target.value)}
+                    onChange={(event) => setText(event.target.value.trim())}
+                    onKeyDown={(event) => updateMessageEntry(event.key)}
                     aria-label='Type the text you want to send as message' 
                 />
             </InputZone>
