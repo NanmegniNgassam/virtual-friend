@@ -44,5 +44,14 @@ export const saveMessageInDiscussion = (message: Message):void => {
     storeDiscussion(discussion);
 }
 
+/**
+ * Generate the Id of the next message to be add in the discussion
+ */
+export const generateNextMessageId = (): number => {
+    const discussion = getDiscussionMessages();
+    
+    return discussion.length;
+}
+
 
 // Think about an evolve where we can send temporary messages (on a specified time window)

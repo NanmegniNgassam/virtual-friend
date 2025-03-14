@@ -3,6 +3,7 @@ import { Avatar } from '@mui/material';
 import { useState } from 'react';
 import { Message, MessageType } from '../../models/Message';
 import { InputZone, TextZoneContainer } from './TextZone.styles';
+import { generateNextMessageId } from '../../services/discussion';
 
 interface TextZoneProps {
     addMessageToThread: (message: Message) => void;
@@ -21,7 +22,7 @@ const TextZone = ({ addMessageToThread }: TextZoneProps) => {
         // Make an object of actual type Message and send it
         const message:Message = {
             repliedId: null,
-            id: 0,
+            id: generateNextMessageId(),
             content: text,
             sentAt: new Date(),
             type: MessageType.SENT
