@@ -12,5 +12,13 @@ export const MessageWrapper = styled.p`
     text-overflow: ellipsis;
     width: fit-content;
     font-size: 0.9rem;
-    align-self: flex-end;
+    align-self: flex-start;
+`;
+
+export const MessageContentWrapper = styled.div`
+`;
+
+export const DateWrapper = styled.p`
+    text-align: start;
+    font-size: smaller;
 `;
