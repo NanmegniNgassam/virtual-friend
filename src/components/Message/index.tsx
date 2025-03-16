@@ -22,11 +22,11 @@ const formatDate = (date: Date):string => {
 
 const MessageContainer = ( { message } : MessageContainerProps ) => {
     return (
-        <MessageWrapper>
+        <MessageWrapper type={message.type}>
             <MessageContentWrapper>
                 {message.content}
             </MessageContentWrapper>
-            <DateWrapper>
+            <DateWrapper type={message.type}>
                 { formatDate(new Date(message.sentAt)) }
             </DateWrapper>
         </MessageWrapper>

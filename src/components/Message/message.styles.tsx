@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Colors } from "../../utils/colors";
+import { MessageType } from "../../models/Message";
 
-export const MessageWrapper = styled.p`
+export const MessageWrapper = styled.div<{ type: MessageType }>`
     background-color: ${Colors.primary.main};
     border-radius: 5px;
     color: white;
@@ -12,13 +13,13 @@ export const MessageWrapper = styled.p`
     text-overflow: ellipsis;
     width: fit-content;
     font-size: 0.9rem;
-    align-self: flex-start;
+    align-self: ${ ({ type }) => (type === MessageType.SENT ? 'flex-end': 'flex-start')} ;
 `;
 
-export const MessageContentWrapper = styled.div`
+export const MessageContentWrapper = styled.p`
 `;
 
-export const DateWrapper = styled.p`
-    text-align: start;
+export const DateWrapper = styled.p<{ type: MessageType }>`
+    text-align: ${ ({ type }) => (type === MessageType.SENT ? 'end': 'start')};
     font-size: smaller;
 `;
