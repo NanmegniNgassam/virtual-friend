@@ -16,14 +16,14 @@ const TextZone = ({ addMessageToThread }: TextZoneProps) => {
      * Send the message entered to the thread
      */
     const sendMessage = ():void => {
-        if(!text)
+        if(!(text.trim()))
             return;
 
         // Make an object of actual type Message and send it
         const message:Message = {
             repliedId: null,
             id: generateNextMessageId(),
-            content: text,
+            content: text.trim(),
             sentAt: new Date(),
             type: MessageType.SENT
         }
@@ -49,17 +49,17 @@ const TextZone = ({ addMessageToThread }: TextZoneProps) => {
                 <input 
                     className='typing-area'
                     value={text}
-                    onChange={(event) => setText(event.target.value.trim())}
+                    onChange={(event) => setText(event.target.value)}
                     onKeyDown={(event) => updateMessageEntry(event.key)}
                     aria-label='Type the text you want to send as message' 
                 />
             </InputZone>
             <Avatar 
                 sx={{
-                    bgcolor: text ? 'primary.main' : 'primary.light', 
+                    bgcolor: text.trim() ? 'primary.main' : 'primary.light', 
                     cursor: 'pointer', 
                     '&:hover': {
-                        bgcolor: text ? 'primary.dark' : 'primary.light' 
+                        bgcolor: text.trim() ? 'primary.dark' : 'primary.light' 
                     }    
                 }}
                 onClick={sendMessage}
