@@ -3,7 +3,7 @@ import MessagesList from "../../components/MessagesList";
 import MobileHeader from "../../components/MobileHeader";
 import TextZone from "../../components/TextZone";
 import { Discussion, Message } from "../../models/Message";
-import { getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
+import { deleteCurrentDiscussion, getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
 import { MainContainer } from "./Home.styles";
 
 
@@ -23,10 +23,19 @@ const Home = () => {
         saveMessageInDiscussion(message);
     }
 
+    /**
+     * Delete all the messages sent locally and in the storage
+     */
+    const deleteAllMessages = ():void => {
+        setDiscussion([]);
+
+        deleteCurrentDiscussion();
+    }
+
     return (
         <div>
             <MainContainer>
-                <MobileHeader />
+                <MobileHeader deleteAllMessages={deleteAllMessages} />
                 <MessagesList messages={discussion} />
                 <TextZone addMessageToThread={sendMessage} />
             </MainContainer>

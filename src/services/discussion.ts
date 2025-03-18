@@ -56,5 +56,11 @@ export const generateNextMessageId = (): number => {
     return discussion.length;
 }
 
+/**
+ * Delete the current whole discussion 
+ */
+export const deleteCurrentDiscussion = ():void => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([]));
+}
 
 // Think about an evolve where we can send temporary messages (on a specified time window)

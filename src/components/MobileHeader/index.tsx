@@ -1,11 +1,15 @@
-import Avatar from "@mui/material/Avatar/Avatar";
-import logo from "../../assets/images/logo.png";
-import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } from "./Header.styles";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import Avatar from "@mui/material/Avatar/Avatar";
 import { useState } from "react";
+import logo from "../../assets/images/logo.png";
+import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } from "./Header.styles";
 
-const MobileHeader = () => {
+interface MobileHeaderProps {
+    deleteAllMessages: () => void;
+}
+
+const MobileHeader = ({ deleteAllMessages }: MobileHeaderProps) => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     /**
@@ -15,8 +19,12 @@ const MobileHeader = () => {
         setModalOpen(false);
     }
 
+    /**
+     * Delete all sent messages on user approval
+     */
     const deleteDiscussion = (): void => {
         try {
+            deleteAllMessages();
 
             closeConfirmationModal();
         } catch(error) {
@@ -41,8 +49,8 @@ const MobileHeader = () => {
             <Dialog
                 open={isModalOpen}
                 onClose={closeConfirmationModal}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                aria-labelledby="discussion-deletion-approval"
+                aria-describedby="delete all the messages sent in the chat"
                 maxWidth="tablet"
             >
                 <DialogTitle id="alert-dialog-title">
