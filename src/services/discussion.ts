@@ -13,7 +13,10 @@ export const getDiscussionMessages = (): Discussion => {
     if(storedData) {
         const data: Discussion = JSON.parse(storedData);
 
-        return data;
+        // Parse the sending Date from string date to the actual Date format
+        const discussion: Discussion = data.map((message) => ({...message, sentAt: new Date(message.sentAt)}))
+
+        return discussion;
     } else {
         // Initialize an empty discussion and save it
         const data: Discussion = [];

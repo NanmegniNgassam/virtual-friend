@@ -12,7 +12,7 @@ interface MessageContainerProps {
  * @returns the date corresponding form in 'HH:MM' string
  */
 const formatDate = (date: Date):string => {
-    const localTime = date.toLocaleTimeString('en-GB');
+    const localTime = new Date(date).toLocaleTimeString('en-GB');
 
     // Remove the seconds value before returning
     const newLocalTime = localTime.split(':').slice(0, 2).join(':');
@@ -27,7 +27,7 @@ const MessageContainer = ( { message } : MessageContainerProps ) => {
                 {message.content}
             </MessageContentWrapper>
             <DateWrapper type={message.type}>
-                { formatDate(new Date(message.sentAt)) }
+                { formatDate(message.sentAt) }
             </DateWrapper>
         </MessageWrapper>
     );
