@@ -35,7 +35,10 @@ const Home = () => {
     return (
         <div>
             <MainContainer>
-                <MobileHeader deleteAllMessages={deleteAllMessages} />
+                <MobileHeader 
+                    deleteAllMessages={deleteAllMessages} 
+                    isMessages={discussion.length ? true : false} 
+                />
                 <MessagesList messages={discussion} />
                 <TextZone addMessageToThread={sendMessage} />
             </MainContainer>

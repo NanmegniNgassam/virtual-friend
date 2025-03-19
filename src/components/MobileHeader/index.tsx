@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar/Avatar";
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
@@ -7,9 +7,10 @@ import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } fr
 
 interface MobileHeaderProps {
     deleteAllMessages: () => void;
+    isMessages: boolean;
 }
 
-const MobileHeader = ({ deleteAllMessages }: MobileHeaderProps) => {
+const MobileHeader = ({ deleteAllMessages, isMessages }: MobileHeaderProps) => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     /**
@@ -44,7 +45,10 @@ const MobileHeader = ({ deleteAllMessages }: MobileHeaderProps) => {
                 <UserNameLayout>virtual friend</UserNameLayout>
                 <OnlineStatus>status</OnlineStatus>
             </TextContainer>
-            <DeleteIcon color="secondary" style={{ cursor: "pointer" }} onClick={() => setModalOpen(true)} />
+            <IconButton aria-label="delete" color="secondary" onClick={() => setModalOpen(true)} disabled={!isMessages}>
+                <DeleteIcon  />
+            </IconButton>
+            
 
             <Dialog
                 open={isModalOpen}
