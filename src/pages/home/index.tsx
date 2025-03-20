@@ -17,12 +17,11 @@ const Home = () => {
      * @param message the actual message to add in the thread
      */
     const sendMessage = async (message: Message): Promise<void> => {
-        // Update the current UI with the newly sent message
+        // Update the current UI with the newly sent message and save it
         setDiscussion((prevMessages) => [...prevMessages, message]);
-
-        // Add the newly sent message into the stored discussion
         saveMessageInDiscussion(message);
 
+        // Interact with the agent to get an answer
         const replyContent = await interactWithAI();
         const reply:Message = {
             content: replyContent,
@@ -32,10 +31,8 @@ const Home = () => {
             type: MessageType.RECEIVED
         }
 
-        // Update the current UI with the newly sent message
+        // Update the current UI with the newly received message and save it
         setDiscussion((prevMessages) => [...prevMessages, reply]);
-
-        // Add the replied message into the stored discussion
         saveMessageInDiscussion(reply);
     }
 
