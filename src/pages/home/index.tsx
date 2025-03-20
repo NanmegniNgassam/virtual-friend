@@ -2,9 +2,10 @@ import { useState } from "react";
 import MessagesList from "../../components/MessagesList";
 import MobileHeader from "../../components/MobileHeader";
 import TextZone from "../../components/TextZone";
-import { Discussion, Message } from "../../models/Message";
-import { deleteCurrentDiscussion, getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
+import { Discussion, Message, MessageType } from "../../models/Message";
+import { deleteCurrentDiscussion, generateNextMessageId, getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
 import { MainContainer } from "./Home.styles";
+import { interactWithAI } from "../../services/ai";
 
 
 const Home = () => {
@@ -15,12 +16,27 @@ const Home = () => {
      * 
      * @param message the actual message to add in the thread
      */
-    const sendMessage = (message: Message): void => {
+    const sendMessage = async (message: Message): Promise<void> => {
         // Update the current UI with the newly sent message
         setDiscussion((prevMessages) => [...prevMessages, message]);
 
         // Add the newly sent message into the stored discussion
         saveMessageInDiscussion(message);
+
+        const replyContent = await interactWithAI();
+        const reply:Message = {
+            content: replyContent,
+            id: generateNextMessageId(),
+            repliedId: generateNextMessageId() - 1,
+            sentAt: new Date(),
+            type: MessageType.RECEIVED
+        }
+
+        // Update the current UI with the newly sent message
+        setDiscussion((prevMessages) => [...prevMessages, reply]);
+
+        // Add the replied message into the stored discussion
+        saveMessageInDiscussion(reply);
     }
 
     /**
