@@ -1,6 +1,7 @@
 import { Discussion, Message } from "../models/Message"
 
 const LOCAL_STORAGE_KEY = "vf-local-discussion"
+const LATEST_MESSAGES_LIMIT = 20;
 
 /**
  * Fetch the whole content of the current discussion (incoming and outgoing messages)
@@ -24,6 +25,15 @@ export const getDiscussionMessages = (): Discussion => {
 
         return data;
     }
+}
+
+/**
+ * Get the latest messages of the current discussion
+ */
+export const getLatestMessages = (): Discussion => {
+    const discussion = getDiscussionMessages();
+
+    return discussion.slice(-LATEST_MESSAGES_LIMIT);
 }
 
 /**
