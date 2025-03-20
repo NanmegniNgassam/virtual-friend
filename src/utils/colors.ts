@@ -5,7 +5,7 @@ export const Colors: {primary: Color, secondary: Color, text: Color} = {
         dark: "#78883C"
     },
     secondary: {
-        main: '#2977BD',
+        main: '#2876bc',
         light: '#78A8D4',
         dark: '#014e92'
     },

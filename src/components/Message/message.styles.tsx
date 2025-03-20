@@ -4,7 +4,7 @@ import { MessageType } from "../../models/Message";
 
 export const MessageWrapper = styled.div<{ type: MessageType }>`
     background-color: ${ ({ type }) => (type === MessageType.SENT ? Colors.primary.main: Colors.secondary.main)};
-    border-radius: 5px;
+    border-radius: ${ ({ type }) => (type === MessageType.SENT ? '5px 5px 0px  5px': '5px 5px 5px 0px')};
     color: white;
     padding: 5px;
     margin: 5px;
