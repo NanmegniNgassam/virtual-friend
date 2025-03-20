@@ -3,7 +3,7 @@ import { Colors } from "../../utils/colors";
 import { MessageType } from "../../models/Message";
 
 export const MessageWrapper = styled.div<{ type: MessageType }>`
-    background-color: ${Colors.primary.main};
+    background-color: ${ ({ type }) => (type === MessageType.SENT ? Colors.primary.main: Colors.secondary.main)};
     border-radius: 5px;
     color: white;
     padding: 5px;
