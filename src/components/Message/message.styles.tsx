@@ -16,7 +16,7 @@ export const MessageWrapper = styled.div<{ type: MessageType }>`
     align-self: ${ ({ type }) => (type === MessageType.SENT ? 'flex-end': 'flex-start')} ;
 `;
 
-export const MessageContentWrapper = styled.p`
+export const MessageContentWrapper = styled.div`
 `;
 
 export const DateWrapper = styled.p<{ type: MessageType }>`
