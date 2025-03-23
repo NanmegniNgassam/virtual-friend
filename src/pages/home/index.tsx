@@ -6,10 +6,12 @@ import { Discussion, Message, MessageType } from "../../models/Message";
 import { deleteCurrentDiscussion, generateNextMessageId, getDiscussionMessages, saveMessageInDiscussion } from "../../services/discussion";
 import { MainContainer } from "./Home.styles";
 import { interactWithAI } from "../../services/ai";
+import { AgentStatus } from "../../models/AgentStatus";
 
 
 const Home = () => {
     const [discussion, setDiscussion] = useState<Discussion>(getDiscussionMessages());
+    const [agentStatus, setAgentStatus] = useState<AgentStatus>(AgentStatus.ONLINE);
 
     /**
      * Send a message into the discussion thread
@@ -21,6 +23,9 @@ const Home = () => {
         setDiscussion((prevMessages) => [...prevMessages, message]);
         saveMessageInDiscussion(message);
 
+        // Set the agent in the thinking state
+        setAgentStatus(AgentStatus.THINKING);
+
         // Interact with the agent to get an answer
         const replyContent = await interactWithAI();
         const reply:Message = {
@@ -30,6 +35,9 @@ const Home = () => {
             sentAt: new Date(),
             type: MessageType.RECEIVED
         }
+
+        // Let the agent get back in online status as the work is somehow done
+        setAgentStatus(AgentStatus.ONLINE);
 
         // Update the current UI with the newly received message and save it
         setDiscussion((prevMessages) => [...prevMessages, reply]);
@@ -51,6 +59,7 @@ const Home = () => {
                 <MobileHeader 
                     deleteAllMessages={deleteAllMessages} 
                     isMessages={discussion.length ? true : false} 
+                    status={agentStatus}
                 />
                 <MessagesList messages={discussion} />
                 <TextZone addMessageToThread={sendMessage} />
