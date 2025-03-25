@@ -20,14 +20,10 @@ const Home = () => {
      * @param message the actual message to add in the thread
      */
     const sendMessage = async (message: Message): Promise<void> => {
-        let messagesContainer = document.getElementById(messagesListId)!;
-
         // Update the current UI with the newly sent message and save it
         setDiscussion((prevMessages) => [...prevMessages, message]);
-        messagesContainer = document.getElementById(messagesListId)!;
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
         saveMessageInDiscussion(message);
-
+        scrollToRecentMessages();
 
         // Set the agent in the thinking state
         setAgentStatus(AgentStatus.THINKING);
@@ -48,7 +44,15 @@ const Home = () => {
         // Update the current UI with the newly received message and save it
         setDiscussion((prevMessages) => [...prevMessages, reply]);
         saveMessageInDiscussion(reply);
-        messagesContainer = document.getElementById(messagesListId)!;
+        scrollToRecentMessages();
+    }
+
+    /**
+     * scroll the MessagesList to the latest message
+     */
+    const scrollToRecentMessages = () => {
+        const messagesContainer = document.getElementById(messagesListId)!;
+
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
@@ -61,6 +65,11 @@ const Home = () => {
         deleteCurrentDiscussion();
     }
 
+    // Automatically scrolls to the latest sent message
+    setTimeout(() => {
+        scrollToRecentMessages();
+    }, 0)
+    
     return (
         <div>
             <MainContainer>
