@@ -7,6 +7,7 @@ import { deleteCurrentDiscussion, generateNextMessageId, getDiscussionMessages, 
 import { MainContainer } from "./Home.styles";
 import { interactWithAI } from "../../services/ai";
 import { AgentStatus } from "../../models/AgentStatus";
+import { messagesListId } from "../../utils/messagesList";
 
 
 const Home = () => {
@@ -19,9 +20,14 @@ const Home = () => {
      * @param message the actual message to add in the thread
      */
     const sendMessage = async (message: Message): Promise<void> => {
+        let messagesContainer = document.getElementById(messagesListId)!;
+
         // Update the current UI with the newly sent message and save it
         setDiscussion((prevMessages) => [...prevMessages, message]);
+        messagesContainer = document.getElementById(messagesListId)!;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
         saveMessageInDiscussion(message);
+
 
         // Set the agent in the thinking state
         setAgentStatus(AgentStatus.THINKING);
@@ -42,6 +48,8 @@ const Home = () => {
         // Update the current UI with the newly received message and save it
         setDiscussion((prevMessages) => [...prevMessages, reply]);
         saveMessageInDiscussion(reply);
+        messagesContainer = document.getElementById(messagesListId)!;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     /**

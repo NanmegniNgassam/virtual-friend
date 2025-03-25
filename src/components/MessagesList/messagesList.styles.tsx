@@ -22,7 +22,7 @@ export const MessagesListWrapper = styled.div`
 
 export const ChatContainer = styled.div`
     position: relative;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 `;

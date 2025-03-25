@@ -1,4 +1,5 @@
 import { Discussion } from "../../models/Message";
+import { messagesListId } from "../../utils/messagesList";
 import MessageContainer from "../Message";
 import { ChatContainer, MessagesListWrapper } from "./messagesList.styles";
 
@@ -8,7 +9,7 @@ interface MessageListProps {
 
 const MessagesList = ({ messages }: MessageListProps) => {
     return (
-        <MessagesListWrapper>
+        <MessagesListWrapper id={messagesListId}>
             <ChatContainer>
                 {
                     messages.map((message, index) => (
