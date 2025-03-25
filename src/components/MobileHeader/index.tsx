@@ -31,7 +31,7 @@ const MobileHeader = ({ deleteAllMessages, isMessages, status }: MobileHeaderPro
 
             closeConfirmationModal();
         } catch(error) {
-            console.log("Error occuring while deleting the whole discussion : ", error);
+            console.error("Error occuring while deleting the whole discussion : ", error);
             throw error;
         }
     }
