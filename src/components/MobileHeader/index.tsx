@@ -1,10 +1,11 @@
+import { ArrowDownward } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Stack } from "@mui/material";
 import Avatar from "@mui/material/Avatar/Avatar";
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
-import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } from "./Header.styles";
 import { AgentStatus } from '../../models/AgentStatus';
+import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } from "./Header.styles";
 
 interface MobileHeaderProps {
     deleteAllMessages: () => void;
@@ -47,9 +48,16 @@ const MobileHeader = ({ deleteAllMessages, isMessages, status }: MobileHeaderPro
                 <UserNameLayout>virtual friend</UserNameLayout>
                 <OnlineStatus> { status === AgentStatus.ONLINE ? 'Online' : 'Thinking...'  } </OnlineStatus>
             </TextContainer>
-            <IconButton aria-label="delete" color="secondary" onClick={() => setModalOpen(true)} disabled={!isMessages}>
-                <DeleteIcon  />
-            </IconButton>
+            <Stack direction="row" >
+                <IconButton aria-label="delete" color="secondary" onClick={() => setModalOpen(true)} disabled={!isMessages}>
+                    <ArrowDownward />
+                </IconButton>
+                <IconButton aria-label="delete" color="secondary" onClick={() => {}} disabled={!isMessages}>
+                    <DeleteIcon  />
+                </IconButton>
+            </Stack>
+
+
             
 
             <Dialog
