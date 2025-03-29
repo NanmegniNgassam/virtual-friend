@@ -9,11 +9,12 @@ import { MobileHeaderContainer, OnlineStatus, TextContainer, UserNameLayout } fr
 
 interface MobileHeaderProps {
     deleteAllMessages: () => void;
+    scrollToRecentMessages: () => void;
     isMessages: boolean;
     status: AgentStatus
 }
 
-const MobileHeader = ({ deleteAllMessages, isMessages, status }: MobileHeaderProps) => {
+const MobileHeader = ({ deleteAllMessages, isMessages, status, scrollToRecentMessages}: MobileHeaderProps) => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     /**
@@ -49,16 +50,14 @@ const MobileHeader = ({ deleteAllMessages, isMessages, status }: MobileHeaderPro
                 <OnlineStatus> { status === AgentStatus.ONLINE ? 'Online' : 'Thinking...'  } </OnlineStatus>
             </TextContainer>
             <Stack direction="row" >
-                <IconButton aria-label="delete" color="secondary" onClick={() => setModalOpen(true)} disabled={!isMessages}>
+                <IconButton aria-label="scroll down" color="secondary" onClick={() => scrollToRecentMessages()} disabled={!isMessages}>
                     <ArrowDownward />
                 </IconButton>
-                <IconButton aria-label="delete" color="secondary" onClick={() => {}} disabled={!isMessages}>
+                <IconButton aria-label="delete" color="secondary" onClick={() => setModalOpen(true)} disabled={!isMessages}>
                     <DeleteIcon  />
                 </IconButton>
             </Stack>
 
-
-            
 
             <Dialog
                 open={isModalOpen}

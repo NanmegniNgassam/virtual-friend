@@ -77,6 +77,7 @@ const Home = () => {
                     deleteAllMessages={deleteAllMessages} 
                     isMessages={discussion.length ? true : false} 
                     status={agentStatus}
+                    scrollToRecentMessages={scrollToRecentMessages}
                 />
                 <MessagesList messages={discussion} />
                 <TextZone addMessageToThread={sendMessage} />
