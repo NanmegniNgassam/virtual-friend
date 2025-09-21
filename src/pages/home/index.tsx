@@ -79,7 +79,7 @@ const Home = () => {
                     status={agentStatus}
                     scrollToRecentMessages={scrollToRecentMessages}
                 />
-                <MessagesList messages={discussion} />
+                <MessagesList messages={discussion} status={agentStatus} />
                 <TextZone addMessageToThread={sendMessage} />
             </MainContainer>
         </div>
