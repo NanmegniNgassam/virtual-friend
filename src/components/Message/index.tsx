@@ -64,8 +64,7 @@ const formatMarkdownToHTML = (text: string): string => {
 const MessageContainer = ( { message } : MessageContainerProps ) => {
     return (
         <MessageWrapper type={message.type}>
-            <MessageContentWrapper dangerouslySetInnerHTML={{ __html: formatMarkdownToHTML(message.content) }} >
-            </MessageContentWrapper>
+            <MessageContentWrapper dangerouslySetInnerHTML={{ __html: formatMarkdownToHTML(message.content) }} />
             <DateWrapper type={message.type}>
                 { formatDate(message.sentAt) }
             </DateWrapper>
