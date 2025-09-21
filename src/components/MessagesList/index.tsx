@@ -2,6 +2,7 @@ import { AgentStatus } from "../../models/AgentStatus";
 import { Discussion } from "../../models/Message";
 import { messagesListId } from "../../utils/messagesList";
 import MessageContainer from "../Message";
+import MessageSkeleton from "../MessageSkeleton";
 import { ChatContainer, MessagesListWrapper } from "./messagesList.styles";
 
 interface MessageListProps {
@@ -20,7 +21,7 @@ const MessagesList = ({ messages, status }: MessageListProps) => {
                 }
                 {
                     status === AgentStatus.THINKING && (
-                        <p>Agent pensif ...</p>
+                        <MessageSkeleton />
                     )
                 }
             </ChatContainer>
