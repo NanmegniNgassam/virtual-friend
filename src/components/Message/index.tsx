@@ -40,7 +40,7 @@ const formatMarkdownToHTML = (text: string): string => {
 
     // Markdown arrays management
     if (text.includes("|")) {
-        text = text.replace(/\n\|(.+?)\|\n/g, (match: string, rowContent: string): string => {
+        text = text.replace(/\n\|(.+?)\|\n/g, (_, rowContent: string): string => {
             const rows: string[] = rowContent.split("\n|").map((row: string) => 
                 `<tr><td>${row.trim().split("|").map((cell: string) => cell.trim()).join("</td><td>")}</td></tr>`
             );
